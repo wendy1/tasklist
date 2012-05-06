@@ -1,4 +1,6 @@
 Tasklist::Application.routes.draw do
+  resource :tasks
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
