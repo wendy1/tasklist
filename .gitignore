@@ -12,4 +12,11 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+*.log
 /tmp
+tmp/**/*
+tmp/*
+doc/api/doc/app
+*.swp
+*~
+.DS_Store
