@@ -1,4 +1,10 @@
 Tasklist::Application.routes.draw do
+# get "tasks/create"
+#  get "tasks/show"
+#  get "tasks/index"
+  
+  root :to => "tasks#index"
+
   resource :tasks
   
   # The priority is based upon order of creation:
