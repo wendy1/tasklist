@@ -1,9 +1,14 @@
-<li>
-	<%= task.title %>
-
-  <ul>
-    <li>
+<div class="task">
+  <div class="fields">
+    <div class="title">
+  	  <%= task.title %>
+    </div>
+    <div class="description">
       <%= task.description %>
-    </li>
-  </ul>
-</li>
+    </div>
+  </div>
+  <div class="actions">
+    <%= link_to "Add subtask", new_tasks_path(:parent_id => task) %>
+    <%= link_to "Add another task", new_tasks_path(:parent_id => "TBA", :after_id => task) %>
+  </div>
+</div>

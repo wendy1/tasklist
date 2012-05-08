@@ -1,0 +1,45 @@
+/* The whole list of tasks */
+#tasklist div {
+	margin-left: 0;
+
+	padding-left: 0;
+	/* border: 1px solid #666; */ 
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, #d8d8d8),
+      color-stop(1, #F5F5F5)
+  );
+} 
+
+/* Each task block */
+#tasklist div.task {
+	margin-bottom: .5em;	
+}
+
+/* The task subfields */
+#tasklist div.task div.fields div {
+	margin-left: 0;
+	margin-bottom: 0;
+	padding: 0 1em;
+	/* border: 1px solid #ddd; */
+	list-style: none;
+	display: inline;
+	font-family: arial, sans-serif;
+	}
+		
+/* The links that follow the task fields */
+#tasklist div.task div.actions {
+	margin-left: 2em;
+	display: inline;
+	font-family:arial,sans-serif;
+	font-size: 75%;
+	}
+
+		
+/* #tasklist ul li.here {
+	border-bottom: 1px solid #ffc;
+	list-style: none;
+	display: inline;
+	} */
