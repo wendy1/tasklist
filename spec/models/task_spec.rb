@@ -44,8 +44,8 @@ describe Task do
       @task.should respond_to("subtasks")
     end
     
-    pending "should default to zero subtasks" do
-      @tasks.subtasks.should be_nil
+    it "should start with zero subtasks" do
+      @task.subtasks.count.should == 0
     end
     
     it "should be able to add child relationships" do
