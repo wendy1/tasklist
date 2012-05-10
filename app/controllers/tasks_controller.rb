@@ -7,19 +7,48 @@ class TasksController < ApplicationController
   
   def new
     @title = "New task"
-    if (params[:parent_id] != nil)
-      @task = Task.find_by_id(params[:parent_id]).subtasks.new
+    
+    unless (params[:after_id].nil?)
+      # add a sibling task
+      @existing_task = Task.find_by_id(params[:after_id])
+      unless @existing_task.parent.nil?
+        @task = @existing_task.parent.subtasks.new
+      else
+        @task = Task.new
+      end
     else
-      @task = Task.new
+      # add subtask
+      unless (params[:parent_id].nil?)
+        @task = Task.find_by_id(params[:parent_id]).subtasks.new
+      else
+        @task = Task.new
+      end
     end
   end
   
   def create
     parent = params[:parent_id]
-    Rails::logger.info "========= parent="+ (parent.nil? ? "nil" :  parent) 
-    unless parent.nil?
+    after = params[:after_id]
+    
+    unless parent.nil? || parent==""
+      # make a child task
       @task = Task.find_by_id(parent).subtasks.create(params[:task])
     else
+      unless after.nil?
+        # make a sibling task
+        @existing_task = Task.find_by_id(params[:after_id])
+      
+        # check if top level task
+        unless @existing_task.parent.nil?
+          #n on-top level - make a child task of the same parent
+          @task = @existing_task.parent.subtasks.create(params[:task])
+        else
+          # top level task
+          @task = Task.create(params[:task])
+        end
+      end
+      
+      # otherwise just make a task 
       @task = Task.create(params[:task])
     end
     redirect_to root_path

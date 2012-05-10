@@ -12,6 +12,6 @@
   </div>
   <div class="actions">
     <%= link_to "Add subtask", new_tasks_path(:parent_id => task) %>
-    <%= link_to "Add another task", new_tasks_path(:parent_id => "TBA", :after_id => task) %>
+    <%= link_to "Add another task", new_tasks_path(:after_id => task) %>
   </div>
 </div>
