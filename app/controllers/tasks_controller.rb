@@ -2,7 +2,10 @@ class TasksController < ApplicationController
   
   def index
     @title = "Task list"
-    @tasks = Task.all
+    @tasks = Task.find :all, :conditions => 'id NOT IN (select distinct child_id from relationships)'
+    Rails::logger.info "------------------ @task ids are"
+    @tasks.each do |t|; Rails::logger.info t.id.to_s; end
+    Rails::logger.info "--------------------"
   end
   
   def new

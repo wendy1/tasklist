@@ -37,7 +37,7 @@ describe Task do
     end
     
     it "should have relationships" do
-      @task.should respond_to("relationships")
+      @task.should respond_to("child_relationships")
     end
     
     it "should have subtasks" do
@@ -51,9 +51,9 @@ describe Task do
     
     it "should be able to add child relationships" do
       subtask = Task.create(:title => "subtask1")
-      relationship = @task.relationships.build(:child_id => subtask.id)
-      relationship.should be_valid
-      relationship.save!
+      child_relationship = @task.child_relationships.build(:child_id => subtask.id)
+      child_relationship.should be_valid
+      child_relationship.save!
       @task.subtasks.count.should == 1 
     end
     
@@ -76,6 +76,24 @@ describe Task do
       Task.all.count.should == 0
     end
     
+  end
+  
+  describe "parent relationships" do
+    
+    before(:each) do
+      @task = Task.create(@taskattr)
+      @subtask = @task.subtasks.create(:title => "subtask")
+      @subsubtask = @subtask.subtasks.create(:title => "subsubtask")
+    end
+    
+    it "should not have a parent if it's not a subtask" do
+      @task.parent.should be_nil
+    end
+    
+    it "should have a parent if it's a subtask" do
+      @subtask.parent.should == @task
+      @subsubtask.parent.parent.should == @task
+    end
   end  
   
 end

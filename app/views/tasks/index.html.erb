@@ -1,10 +1,7 @@
 <h1><%= @title %></h1>
 
 <ul id="tasklist">
-      <%#= render @tasks %>
-      <% Rails::logger.info "=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-= index.html.erb starting" %>
       <%= nested_tasks @tasks %>
-      <% Rails::logger.info "=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-= index.html.erb ending" %>
 </ul>
 
 <%#= render "form" %>

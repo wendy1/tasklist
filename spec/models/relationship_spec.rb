@@ -34,12 +34,12 @@ describe Relationship do
       parenttask = Task.create!(:title => "a")
       parenttask.should be_valid
       childtask = Task.create!(:title => "b")
-      relationship = parenttask.relationships.build(:child_id => childtask.id)
-      relationship.should be_valid
-      relationship.save!
+      child_relationship = parenttask.child_relationships.build(:child_id => childtask.id)
+      child_relationship.should be_valid
+      child_relationship.save!
       
-      parenttask.relationships.count.should == 1
-      parenttask.relationships.first.child_id.should == childtask.id
+      parenttask.child_relationships.count.should == 1
+      parenttask.child_relationships.first.child_id.should == childtask.id
     end
 
   end
