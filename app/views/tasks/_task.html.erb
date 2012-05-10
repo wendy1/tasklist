@@ -13,5 +13,10 @@
   <div class="actions">
     <%= link_to "Add subtask", new_tasks_path(:parent_id => task) %>
     <%= link_to "Add another task", new_tasks_path(:after_id => task) %>
+    <% if task.subtasks.count > 0 %>
+      <%= link_to "Delete this task", tasks_path(:id => task), :confirm => "Are you sure you want to delete this task and all its subtasks?", :method => :delete %>
+    <% else %>
+      <%= link_to "Delete this task", tasks_path(:id => task), :confirm => "Are you sure you want to delete this task?", :method => :delete %>
+    <% end %>
   </div>
 </div>

@@ -46,14 +46,21 @@ class TasksController < ApplicationController
           # top level task
           @task = Task.create(params[:task])
         end
+      else
+        # Just make a generic task
+        @task = Task.create(params[:task])
       end
-      
-      # otherwise just make a task 
-      @task = Task.create(params[:task])
+
     end
     redirect_to root_path
   end
 
   def show
   end
+  
+  def destroy
+    Task.destroy(params[:id])
+    redirect_to root_path
+  end
+  
 end
