@@ -1,5 +1,5 @@
 /* The whole list of tasks */
-#tasklist div {
+#tasklist div.task {
 	margin-left: 0;
 
 	padding-left: 0;

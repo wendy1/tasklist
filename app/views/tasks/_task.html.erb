@@ -6,6 +6,9 @@
     <div class="description">
       <%= task.description %>
     </div>
+    <div class="id">
+      <%= task.id %>
+    </div>
   </div>
   <div class="actions">
     <%= link_to "Add subtask", new_tasks_path(:parent_id => task) %>
