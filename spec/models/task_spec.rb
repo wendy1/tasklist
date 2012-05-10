@@ -44,7 +44,8 @@ describe Task do
       @task.should respond_to("subtasks")
     end
     
-    it "should start with zero subtasks" do
+    it "sho
+    uld start with zero subtasks" do
       @task.subtasks.count.should == 0
     end
     
