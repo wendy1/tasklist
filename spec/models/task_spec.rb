@@ -36,6 +36,26 @@ describe Task do
       @task.should be_valid
     end
     
+    describe "complete field" do
+    
+      it "should include complete field" do
+        @task.should respond_to("complete")
+      end
+    
+      it "should default to not-complete" do
+        @task.complete.should == false
+      end
+      
+      it "should be able to change to completed" do
+        @task.complete = true
+        @task.save
+        # make sure saved version has complete set correctly
+        @task2 = Task.find_by_id(@task)
+        @task2.complete.should == true
+      end
+    
+    end
+    
     it "should have relationships" do
       @task.should respond_to("child_relationships")
     end

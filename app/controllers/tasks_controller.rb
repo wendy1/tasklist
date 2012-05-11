@@ -55,7 +55,7 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
-  def show
+  def edit
   end
   
   def destroy
