@@ -1,11 +1,7 @@
 <div class="task">
   <div class="fields">
     <div class="complete">
-      <% if task.complete %>
-        <%= check_box_tag 'complete', 'complete', true %>
-      <% else %>
-        <%= check_box_tag 'complete', 'complete', false %>
-      <% end %>
+      <%= check_box_tag task.id.to_s, 'complete', task.complete?, :taskid => task.id.to_s %>
     </div>
     <div class="title">
   	  <%= task.title %>

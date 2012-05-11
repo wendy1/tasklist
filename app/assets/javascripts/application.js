@@ -13,3 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+// $.update('/tasks/36', { complete: "true"}, function(response) { alert("response was: " + response);});
+
+$(function($) {
+	$('#tasklist .complete').on('change input',
+		function(event) {
+			// alert ("taskid = " + event.target.id);
+               $.ajax({
+                      type: "POST",
+                      url: '/tasks/' + event.target.id + '.json',
+                      data: { _method:'PUT', task : {complete: event.target.checked}},
+                      dataType: 'json',
+                      success: function(msg) {
+                        alert( "Data Saved: " + msg );
+                      }
+            });
+	    } 
+	)
+})
