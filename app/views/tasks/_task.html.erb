@@ -4,10 +4,10 @@
       <%= check_box_tag task.id.to_s, 'complete', task.complete?, :taskid => task.id.to_s %>
     </div>
     <div class="title">
-  	  <%= task.title %>
+  	  <%= text_field_tag task.id.to_s, task.title %>
     </div>
     <div class="description">
-      <%= task.description %>
+  	  <%= text_field_tag task.id.to_s, task.description %>
     </div>
     <div class="id">
       <%= task.id %>

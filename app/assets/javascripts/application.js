@@ -31,4 +31,37 @@ $(function($) {
             });
 	    } 
 	)
-})
+});
+
+$(function($) {
+	$('#tasklist .title').on('change input',
+		function(event) {
+             $.ajax({
+                      type: "POST",
+                      url: '/tasks/' + event.target.id + '.json',
+                      data: { _method:'PUT', task : {title: event.target.value}},
+                      dataType: 'json',
+                      success: function(msg) {
+                        alert( "Data Saved: " + msg );
+                      }
+            });
+	    } 
+	)
+});
+
+$(function($) {
+	$('#tasklist .description').on('change input',
+		function(event) {
+             $.ajax({
+                      type: "POST",
+                      url: '/tasks/' + event.target.id + '.json',
+                      data: { _method:'PUT', task : {description: event.target.value}},
+                      dataType: 'json',
+                      success: function(msg) {
+                        alert( "Data Saved: " + msg );
+                      }
+            });
+	    } 
+	)
+});
+
