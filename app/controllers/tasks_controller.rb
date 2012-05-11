@@ -56,6 +56,19 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @title = "Edit Task"
+    @task = Task.find_by_id(params[:id])
+  end
+  
+  def update
+    @task = Task.find(params[:id])
+    if @task.update_attributes(params[:task])
+      flash[:success] = "Task updated"
+      redirect_to root_path
+    else
+      @title = "Edit Task"
+      render "edit"
+    end
   end
   
   def destroy

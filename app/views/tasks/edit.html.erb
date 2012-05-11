@@ -1,0 +1,7 @@
+<h1><%= @title %></h1>
+
+<%= form_for(@task) do |t| %>
+  <%= render 'task_fields', :task => t %>
+  
+  <div class="update-task-button"><%= t.submit "Update Task" %></div>
+<% end %>

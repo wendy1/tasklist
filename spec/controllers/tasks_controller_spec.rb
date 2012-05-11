@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe TasksController do
+  render_views
 
   before(:each) do
     @taskattr = {:title => "Test Title", :description => "Test description"}
@@ -61,11 +62,66 @@ describe TasksController do
     
   end 
 
-  describe "GET 'show'" do
-    it "returns http success" do
-      get 'show'
-      response.should be_success
+  describe "GET 'edit'" do
+    
+    before(:each) do
+      @task = Task.create!(@taskattr)
     end
+    
+    it "should be successful" do
+      get :edit, :id => @task
+      response.should be_successful
+    end
+    
+    it "should have the right title" do
+      get :edit, :id => @task
+      response.should have_selector("title", :content => "Edit Task")
+    end
+    
+  end
+  
+  describe "PUT 'update'" do
+    
+    before(:each) do
+      @task = Task.create!(@taskattr)
+    end
+    
+    describe "success" do
+      
+      it "should change the task's complete attribute" do
+        put :update, :id => @task, :task => { :complete => true }
+        @task.reload
+        @task.complete.should == true
+        
+        put :update, :id => @task, :task => { :complete => false }
+        @task.reload
+        @task.complete.should == false
+      end
+      
+      it "should change the task's title attribute " do
+        put :update, :id => @task, :task => { :title => "updated title" }
+        @task.reload
+        @task.title.should == "updated title"
+      end
+      
+      it "should change the task's description attribute " do
+        put :update, :id => @task, :task => { :description => "updated description" }
+        @task.reload
+        @task.description.should == "updated description"
+      end
+      
+      pending "should redirect to the user show page" do
+        put :update, :id => @user, :user => @attr
+        response.should redirect_to(user_path(@user))
+      end
+      
+      pending "should have a flash message" do
+        put :update, :id => @user, :user => @attr
+        flash[:success].should =~ /updated/
+      end
+      
+    end
+    
   end
 
 end
